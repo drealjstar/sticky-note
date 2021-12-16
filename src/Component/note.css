@@ -7,9 +7,11 @@
 .sideBar{
     width: 20%;
     background-color: blue;
+    height: 200px;
 }
 
 .mainPage{
     width: 80%;
     color: red;
+    height: 200px;
 }
