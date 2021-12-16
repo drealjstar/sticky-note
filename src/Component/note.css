@@ -1,0 +1,15 @@
+
+.textBody{
+    height: 100vh;
+    width: 100%;
+}
+
+.sideBar{
+    width: 20%;
+    background-color: blue;
+}
+
+.mainPage{
+    width: 80%;
+    color: red;
+}
