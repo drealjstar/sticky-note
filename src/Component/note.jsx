@@ -8,6 +8,13 @@ const colors = [{ color: "yellow", name: 'Y' }, { color: "orange", name: 'O' }, 
 function Note() {
   const [showList, setShowList] = useState(false);
   const showMenu = () => setShowList(!showList);
+  const [notes, setNotes] = useState([]);
+
+
+  const selectColor = (color) => {
+    setNotes([{color, title: 'example title ...'}, ...notes])
+  }
+
 
   const userRef = useRef()
   function handleClickOutside(event) {
@@ -15,6 +22,7 @@ function Note() {
       setShowList(false)
     }
   }
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -38,7 +46,9 @@ function Note() {
                 <div className="dropDownMenu">
                   {colors.map(c => {
                     return (
-                      <div className="dropDownItems" style={{ backgroundColor: c.color }}>
+                      <div className="dropDownItems"
+                       style={{ backgroundColor: c.color }}
+                        onClick={() => selectColor(c.color)}>
                         {c.name}</div>
                     )
                   })
@@ -49,7 +59,7 @@ function Note() {
           </div>
         </div>
       </div>
-      <MainPage />
+      <MainPage  notes={notes}/>
     </div>
   )
 }

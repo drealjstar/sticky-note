@@ -1,5 +1,57 @@
 .mainPage{
-    width: 85%;
-    /* background-color: red; */
-    height: 100vh;
-    }
+width: 85%;
+height: 100vh;
+}
+  
+.inputWrapper{
+margin-top: 28px;
+margin-left: 60px;
+position: relative;
+}
+
+input{
+text-indent: 22px;
+padding: 4px;
+border: 1px;
+border-style: ridge;
+border-color: rgb(199, 193, 193); 
+
+}
+
+input::placeholder{
+color: rgb(199, 193, 193); 
+font-weight: 600;
+  }
+
+.searchIcon{
+position: absolute;
+padding-top: 4px;
+padding-left: 5px;
+color: rgb(199, 193, 193);
+font-weight: 600;
+}
+
+.subTitle{
+margin-left: 60px;
+margin-top: 50px;
+font-size: x-large;
+}
+
+.notes{
+    margin-left: 40px;
+    display: flex;
+}
+
+.note textarea{
+  background-color: inherit;
+}
+
+.note {
+  margin-right: 30px;
+}
+
+
+
+
+
+
