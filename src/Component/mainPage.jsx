@@ -30,7 +30,18 @@ function MainPage() {
     };
   }, [userRef]);
 
-  return (
+
+
+   const deleteFromNotes = (color) => {
+    const deletingNotes = notes.filter(n =>{
+      return  n.color !== color
+    })
+
+    setNotes(deletingNotes)
+  }
+
+
+return (
     <div className="textBody">
       <div className="sideBar">
         <div className="titleWrapper">
@@ -39,19 +50,20 @@ function MainPage() {
         <div className="dropDownWrapper">
           <div className="dropDown" ref={userRef}>
             <div className="dropDownHeader"
-              onClick={showMenu}
-            >
+              onClick={showMenu}>
               <div className="dropDownSymbol" >+</div>
               {showList &&
                 <div className="dropDownMenu">
-                  {colors.map(c => {
+                  {colors.map((c, index) => {
                     return (
                       <div className="dropDownItems"
-                       style={{ backgroundColor: c.color }}
-                        onClick={() => selectColor(c.color)}>
-                        {c.name}</div>
+                      key={index}
+                      style={{ backgroundColor: c.color }}
+                     onClick={() => selectColor(c.color)}>
+                    {c.name}
+                    </div>
                     )
-                  })
+                   })
                   }
                 </div>
               }
@@ -59,7 +71,7 @@ function MainPage() {
           </div>
         </div>
       </div>
-      <NotesPage  notes={notes}/>
+      <NotesPage  notes={notes}  deleteFromNotes={deleteFromNotes} />
     </div>
   )
 }

@@ -3,7 +3,7 @@ import "./note.css";
 
 function Notes(props) {
 
-const { notes } = props;
+const { notes, deleteFromNotes } = props;
 
 return (
     <div className="notesPage">
@@ -15,23 +15,20 @@ return (
       </div>
       <div className="subTitle"><h1>Notes</h1></div>
       <div className="notes">
-        {notes.map(note => {
+        {notes.map((note, index) => {
           return (
-            <div style={{backgroundColor : note.color}} className="note">
-            
+            <div style={{backgroundColor : note.color}} className="note" key={index}>
             <div className="editAndDeleteWrapper">
-            
-            <div className="delete">×</div> 
-
+            <div className="delete"
+            onClick={() => {
+              deleteFromNotes(note.color);
+            }}
+            >×</div> 
             </div>
-
-            <textarea rows="15" cols="40"  >
-              
-             {note.title}
+             <textarea rows="15" cols="40">
+              {note.title}
              </textarea>
-             
-
-           </div>
+          </div>
           )
         })}
      </div>
