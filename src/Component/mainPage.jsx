@@ -1,41 +1,67 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./mainPage.css";
+import NotesPage from "./note";
 
-function MainPage(props) {
+const colors = [{ color: "yellow", name: 'Y' }, { color: "orange", name: 'O' }, { color: "purple", name: "P" }, { color: "blue", name: "B" },
+{ color: "green", name: "G" }];
 
-  const { notes } = props;
+function MainPage() {
+  const [showList, setShowList] = useState(false);
+  const showMenu = () => setShowList(!showList);
+  const [notes, setNotes] = useState([]);
+
+
+  const selectColor = (color) => {
+    setNotes([{color, title: 'write something ...'}, ...notes])
+  }
+
+
+  const userRef = useRef()
+  function handleClickOutside(event) {
+    if (!userRef?.current?.contains(event.target)) {
+      setShowList(false)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [userRef]);
 
   return (
-    <div className="mainPage">
-      <div className="inputWrapper">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="searchIcon" viewBox="0 0 16 16">
-          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-        </svg>
-        <input placeholder="Search" className="search" />
-      </div>
-      <div className="subTitle"><h1>Notes</h1></div>
-      <div className="notes">
-        {notes.map(note => {
-          return (
-            <div style={{backgroundColor : note.color}} className="note">
-            <textarea rows="15" cols="40" >
-              {note.title}
-            </textarea>
+    <div className="textBody">
+      <div className="sideBar">
+        <div className="titleWrapper">
+          <div className="title">Docket</div>
+        </div>
+        <div className="dropDownWrapper">
+          <div className="dropDown" ref={userRef}>
+            <div className="dropDownHeader"
+              onClick={showMenu}
+            >
+              <div className="dropDownSymbol" >+</div>
+              {showList &&
+                <div className="dropDownMenu">
+                  {colors.map(c => {
+                    return (
+                      <div className="dropDownItems"
+                       style={{ backgroundColor: c.color }}
+                        onClick={() => selectColor(c.color)}>
+                        {c.name}</div>
+                    )
+                  })
+                  }
+                </div>
+              }
             </div>
-          )
-        })}
+          </div>
+        </div>
       </div>
-
-
-
-
-
-
-
-
+      <NotesPage  notes={notes}/>
     </div>
   )
 }
 
 export default MainPage;
-
