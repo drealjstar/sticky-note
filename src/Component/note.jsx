@@ -3,9 +3,9 @@ import "./note.css";
 
 function Notes(props) {
 
-const { notes, deleteFromNotes } = props;
+  const { notes, deleteFromNotes } = props;
 
-return (
+  return (
     <div className="notesPage">
       <div className="inputWrapper">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="searchIcon" viewBox="0 0 16 16">
@@ -17,22 +17,23 @@ return (
       <div className="notes">
         {notes.map((note, index) => {
           return (
-            <div style={{backgroundColor : note.color}} className="note" key={index}>
-            <div className="editAndDeleteWrapper">
-            <div className="delete"
-            onClick={() => {
-              deleteFromNotes(note.color);
-            }}
-            >×</div> 
+            <div style={{ backgroundColor: note.color }} className="note" key={index}>
+              <div className="editAndDeleteWrapper">
+                <div className="delete"
+                  onClick={() => {
+                    console.log(note);
+                    deleteFromNotes(note.id);
+                  }}
+                >×</div>
+              </div>
+              <textarea rows="15" cols="40">
+                {note.title}
+              </textarea>
             </div>
-             <textarea rows="15" cols="40">
-              {note.title}
-             </textarea>
-          </div>
           )
         })}
-     </div>
-     </div>
+      </div>
+    </div>
   )
 }
 

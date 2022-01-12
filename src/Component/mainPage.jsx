@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { v4 as uuid } from 'uuid';
 import "./mainPage.css";
 import NotesPage from "./note";
 
@@ -10,11 +11,9 @@ function MainPage() {
   const showMenu = () => setShowList(!showList);
   const [notes, setNotes] = useState([]);
 
-
   const selectColor = (color) => {
-    setNotes([{color, title: 'write something ...'}, ...notes])
+    setNotes([{ id: uuid(), color, title: 'write something ...' }, ...notes])
   }
-
 
   const userRef = useRef()
   function handleClickOutside(event) {
@@ -30,18 +29,14 @@ function MainPage() {
     };
   }, [userRef]);
 
-
-
-   const deleteFromNotes = (color) => {
-    const deletingNotes = notes.filter(n =>{
-      return  n.color !== color
+  const deleteFromNotes = (id) => {
+    const deletingNotes = notes.filter(n => {
+      return n.id !== id
     })
-
     setNotes(deletingNotes)
   }
 
-
-return (
+  return (
     <div className="textBody">
       <div className="sideBar">
         <div className="titleWrapper">
@@ -57,13 +52,13 @@ return (
                   {colors.map((c, index) => {
                     return (
                       <div className="dropDownItems"
-                      key={index}
-                      style={{ backgroundColor: c.color }}
-                     onClick={() => selectColor(c.color)}>
-                    {c.name}
-                    </div>
+                        key={index}
+                        style={{ backgroundColor: c.color }}
+                        onClick={() => selectColor(c.color)}>
+                        {c.name}
+                      </div>
                     )
-                   })
+                  })
                   }
                 </div>
               }
@@ -71,7 +66,7 @@ return (
           </div>
         </div>
       </div>
-      <NotesPage  notes={notes}  deleteFromNotes={deleteFromNotes} />
+      <NotesPage notes={notes} deleteFromNotes={deleteFromNotes} />
     </div>
   )
 }
