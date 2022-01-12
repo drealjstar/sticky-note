@@ -1,5 +1,6 @@
 .notesPage{
 width: 85%;
+
 }
   
 .inputWrapper{
@@ -39,7 +40,7 @@ font-size: x-large;
     margin-left: 40px;
     display: flex;
     flex-wrap: wrap;
-}
+  }
 
 .note textarea{
   background-color: inherit;

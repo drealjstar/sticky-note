@@ -21,8 +21,7 @@ function Notes(props) {
               <div className="editAndDeleteWrapper">
                 <div className="delete"
                   onClick={() => {
-                    console.log(note);
-                    deleteFromNotes(note.id);
+                     deleteFromNotes(note.id);
                   }}
                 >×</div>
               </div>
