@@ -10,8 +10,9 @@ function MainPage() {
   const [showList, setShowList] = useState(false);
   const showMenu = () => setShowList(!showList);
   const [notes, setNotes] = useState([]);
+  const [query, setQuery] = useState("")
 
-  const selectColor = (color) => {
+   const selectColor = (color) => {
     setNotes([{ id: uuid(), color, title: 'write something ...' }, ...notes])
   }
 
@@ -66,7 +67,7 @@ function MainPage() {
           </div>
         </div>
       </div>
-      <NotesPage notes={notes} deleteFromNotes={deleteFromNotes} />
+      <NotesPage notes={notes} deleteFromNotes={deleteFromNotes} query={query} setQuery={setQuery}/>
     </div>
   )
 }
