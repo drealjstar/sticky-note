@@ -15,16 +15,11 @@ function Notes(props) {
       </div>
       <div className="subTitle"><h1>Notes</h1></div>
       <div className="notes">
-        {notes.filter(note =>{
-        if (query === '') {
-          return note;
-        } else if (note.color.toLowerCase().includes(query.toLowerCase())) {
-          return note;
-        }
-      }).map((note, index) => {
+        {notes.filter(note => note.color.toLowerCase().includes(query.toLowerCase())
+        ).map((note, index) => {
           return (
             <div style={{ backgroundColor: note.color }} className="note" key={index}>
-              <div className="editAndDeleteWrapper">
+              <div className="deleteWrapper">
                 <div className="delete"
                   onClick={() => {
                      deleteFromNotes(note.id);

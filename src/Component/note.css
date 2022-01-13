@@ -71,7 +71,7 @@ button{
 }
 
 
-.editAndDeleteWrapper{
+.deleteWrapper{
   display: flex;
   justify-content: flex-end;
 }
