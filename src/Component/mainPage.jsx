@@ -37,6 +37,15 @@ function MainPage() {
     setNotes(deletingNotes)
   }
 
+  const reorder = (note, startIndex, endIndex) => {
+    const result = Array.from(note);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+  };
+
+
   return (
     <div className="textBody">
       <div className="sideBar">
@@ -67,7 +76,7 @@ function MainPage() {
           </div>
         </div>
       </div>
-      <NotesPage notes={notes} deleteFromNotes={deleteFromNotes} query={query} setQuery={setQuery} />
+      <NotesPage notes={notes} setNotes={setNotes} deleteFromNotes={deleteFromNotes} query={query} setQuery={setQuery} reorder={reorder} />
     </div>
   )
 }
