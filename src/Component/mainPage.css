@@ -84,3 +84,14 @@
     align-items: center;
     justify-content: center;
 }
+
+@media screen  and (max-width: 500px){
+    .textBody{
+        flex-direction: column;
+        padding: 0;
+    }
+    .sideBar{
+    width: 100%;
+    }
+}
+

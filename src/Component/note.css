@@ -99,6 +99,15 @@ button{
   margin-right: 15px;
 }
 
+@media screen  and (max-width: 500px){
+  .textBody{
+      flex-direction: column;
+      padding: 0;
+  }
+  .notesPage{
+  width: 100%;
+    }
+}
 
 
 
